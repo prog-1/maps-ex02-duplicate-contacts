@@ -43,6 +43,8 @@ Note that the phone book contains duplicate contacts `Deniss` and `Deniss B` (`D
 Write a function `removeDuplicateContacts(contacts map[string]string) map[string]string`
 that merges contacts with the same number in the phone book.
 
+Call `removeDuplicateContacts` function from `main()` and create tests for the function.
+
 ### Example
 
 ```
