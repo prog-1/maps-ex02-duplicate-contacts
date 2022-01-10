@@ -1,79 +1,63 @@
-# Duplicate Contacts 1 (Exercise)
+# Phone Book (Exercise)
 
-In this exercise, you need to write two programs that manage contacts and their phone numbers in your phone. 
+In this exercise, you need to write a program that creates a phone book storing names
+and phone numbers of your contacts.
 
-## Part 1: Phone Book
+Write a program that asks a user to enter names and phone number of your contacts as
+a keyboard input, stores them in a map, and prints the map.
 
-Write a program that asks a user to enter names and phone number of your contacts.
-Create a map `map[string]string` that maps name to the corresponding phone numbers.
-Print the map.
+Write a function `func createPhoneBook(names []string, numbers []string) map[string]string`,
+where `names` is a slice of names entered by the user and `numbers` is a slice of phone numbers entered by the user.
 
-> **NOTE** Multiple names may have the same phone number.
+A name may be entered multipled times. In this case, the map must store the first phone number occurrence.
+
+Create tests for the `createPhoneBook` function.
 
 ### Example
 
 ```
 How many contacts do you want to enter?
-9
+5
 Enter name #1: Alina
 Enter phone number #1: +37126017505
-Enter name #2: Deniss
+Enter name #2: Deniss B
 Enter phone number #2: +37127785804
-Enter name #3: Andrejs
-Enter phone number #3: +37124540266
-Enter name #4: Polina
-Enter phone number #4: +37121256444
-Enter name #5: Deniss B
-Enter phone number #5: +37127785804
-Enter name #6: Polina J
-Enter phone number #6: +37121256444
-Enter name #7: Antons
-Enter phone number #7: +37123622588
-Enter name #8: Valerija
-Enter phone number #8: +37127754705
-Enter name #9: Deniss M
-Enter phone number #9: +37123228388
-map[Alina:+37126017505 Andrejs:+37124540266 Antons:+37123622588 Deniss:+37127785804 Deniss B:+37127785804 Deniss M:+37123228388 Polina:+37121256444 Polina J:+37121256444 Valerija:+37127754705]
+Enter name #3: Antons
+Enter phone number #3: +37123622588
+Enter name #4: Alina
+Enter phone number #4: +37126505719
+Enter name #5: Antons
+Enter phone number #5: +37128852154
+map[Alina:+37126017505 Antons:+37123622588 Deniss B:+37127785804]
 ```
 
-Note that the phone book contains duplicate contacts `Deniss` and `Deniss B` (`Deniss M` is not a duplicate, because it corresponds to a different phone number. `Polina` and `Polina J` are duplicates as well.
-
-## Part 2: Duplicate Contacts
-
-Write a function `removeDuplicateContacts(contacts map[string]string) map[string]string`
-that merges contacts with the same number in the phone book.
-
-Call `removeDuplicateContacts` function from `main()` and create tests for the function.
-
-### Example
+The input for the `createPhoneBook` function in this example must be
 
 ```
-phoneBook := map[string]string{
-		"Alina":    "+37126017505",
-		"Andrejs":  "+37124540266",
-		"Antons":   "+37123622588",
-		"Deniss":   "+37127785804",
-		"Deniss B": "+37127785804",
-		"Deniss M": "+37123228388",
-		"Polina":   "+37121256444",
-		"Polina J": "+37121256444",
-		"Valerija": "+37127754705",
-	}
-removeDuplicateContacts(phoneBook)
+names = []string{
+  "Alina",
+  "Deniss B",
+  "Antons",
+  "Alina",
+  "Antons",
+}
+numbers = []string{
+  "+37126017505",
+  "+37127785804",
+  "+37123622588",
+  "+37126505719",
+  "+37128852154",
+}
 ```
 
-must return
+The returned map must be
 
 ```
-phoneBook := map[string]string{
-		"Alina":    "+37126017505",
-		"Andrejs":  "+37124540266",
-		"Antons":   "+37123622588",
-		"Deniss":   "+37127785804",
-		"Deniss M": "+37123228388",
-		"Polina J": "+37121256444",
-		"Valerija": "+37127754705",
-	}
+map[string]string{
+  "Alina": "+37126017505",
+  "Antons": "+37123622588",
+  "Deniss B": "+37127785804",
+}
 ```
 
-`Deniss B` may occur instead of `Denis`; `Polina` may occur instead of `Polina J`.
+In this example, "Alina" and "Antons" occur twice. The phone numbers of the first occurrences are stored in the map.
