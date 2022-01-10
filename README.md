@@ -9,7 +9,7 @@ a keyboard input, stores them in a map, and prints the map.
 Write a function `func createPhoneBook(names []string, numbers []string) map[string]string`,
 where `names` is a slice of names entered by the user and `numbers` is a slice of phone numbers entered by the user.
 
-A name may be entered multiple times. In this case, the map must store the first phone number occurrence.
+A name may be entered multiple times. In this case, the map must store the last phone number occurrence.
 
 Create tests for the `createPhoneBook` function.
 
@@ -28,7 +28,7 @@ Enter name #4: Alina
 Enter phone number #4: +37126505719
 Enter name #5: Antons
 Enter phone number #5: +37128852154
-map[Alina:+37126017505 Antons:+37123622588 Deniss B:+37127785804]
+map[Alina:+37126505719 Antons:+37128852154 Deniss B:+37127785804]
 ```
 
 The input for the `createPhoneBook` function in this example must be
@@ -54,8 +54,8 @@ The returned map must be
 
 ```
 map[string]string{
-  "Alina": "+37126017505",
-  "Antons": "+37123622588",
+  "Alina": "+37126505719",
+  "Antons": "+37128852154",
   "Deniss B": "+37127785804",
 }
 ```
