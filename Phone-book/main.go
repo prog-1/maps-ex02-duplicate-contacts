@@ -2,27 +2,12 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
-
-func find(name string, names []string) int {
-	for i, n := range names {
-		if n == name {
-			return i
-		}
-	}
-	return -1
-}
 
 func createPhoneBook(names []string, numbers []string) map[string]string {
 	pb := make(map[string]string)
 	for i, name := range names {
-		if find(name, names) == -1 {
-			pb[names[i]] = numbers[i]
-		} else {
-			fi := find(name, names)
-			pb[names[fi]] = numbers[i]
-		}
+		pb[name] = numbers[i]
 	}
 	return pb
 }
@@ -41,13 +26,5 @@ func main() {
 		fmt.Scan(&tmp)
 		numbers = append(numbers, tmp)
 	}
-	pb := createPhoneBook(names, numbers)
-	var keys []string
-	for k := range pb {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-	for _, k := range keys {
-		fmt.Println(k, ":", pb[k])
-	}
+	fmt.Print(createPhoneBook(names, numbers))
 }
