@@ -37,4 +37,4 @@ and phone numbers of your contacts.`)
 	}
 }
 
-// program isn't full. Input with all names and numbers (map[aa:111]) should be at the end. But now it is after each "contact"
+// program isn't full. Output should be at the end with all names and numbers (map[aa:111]). But now it is after each "contact"
