@@ -16,11 +16,13 @@ func createPhoneBook(names []string, numbers []string) map[string]string {
 
 func main() {
 	var count int
+	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println("How many contacts do you want to enter?")
-	fmt.Scan(&count)
+	scanner.Scan()
+	bcount := scanner.Text()
+	fmt.Sscan(bcount, &count)
 	names := make([]string, count)
 	numbers := make([]string, count)
-	scanner := bufio.NewScanner(os.Stdin)
 	for i := 0; i < count; i++ {
 		fmt.Printf("Enter name #%v: ", i+1)
 		scanner.Scan()
