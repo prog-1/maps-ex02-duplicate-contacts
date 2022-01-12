@@ -24,7 +24,7 @@ func main() {
 	for i = 0; i != size; i++ {
 		fmt.Print("Enter name #", i, " : ")
 		text1, _ := reader.ReadString('\n')
-		fmt.Print("Enter phone number #", i, " : ")
+		fmt.Print("Enter phone number #", i+1, " : ")
 		text2, _ := reader.ReadString('\n')
 		names = append(names, text1)
 		numbers = append(numbers, text2)
