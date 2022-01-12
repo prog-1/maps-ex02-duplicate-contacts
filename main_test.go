@@ -20,8 +20,6 @@ func TestCreatePhoneBook(t *testing.T) {
 		got := createPhoneBook(tc.names, tc.numbers)
 		if !reflect.DeepEqual(got, tc.want) {
 			t.Errorf("createPhoneBook(%v, %v) = %v, want = %v", tc.names, tc.numbers, got, tc.want)
-		} // Every Test fails, although everywhere got == want ??
-		//createPhoneBook([A1 A2 A9 A1 A9], [11 22 99 88 99]) = map[A1:88 A2:22 A9:99], want = map[A1:88 A2:22 A9:99]
-		//FAIL
+		}
 	}
 }
