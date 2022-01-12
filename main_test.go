@@ -5,20 +5,71 @@ import (
 	"testing"
 )
 
-func TestcreatePhoneBook(t *testing.T) {
-	for _, tc := range []struct {
-		name  string
-		names string
-		numbers string
-		want  map[string]string
-		}{
-			{"empty-nil", nil, nil, map[string]string},
-			{"one name and contact", "Alesja", "+37122331231", map[Alesja:+37122331231]},
-			{"example", "Alina", "Deniss B", "Antons", "Alina", "Antons",  "+37126017505", "+37127785804", "+37123622588", "+37126505719", "+37128852154", map[Alina: +37126505719], map[Antons: +37128852154], map[Deniss B: +37127785804]},
-		} {
-			if got := createPhoneBook(tc.names, tc.numbers); got != tc.want {
-				t.Errorf("got = %v, want = %v", got, tc.want)
-			}
-		}
+func TestCreatePhoneBook(t *testing.T) {
+	tests := []struct {
+		test_name string
+		names     []string
+		numbers   []string
+		want      map[string]string
+	}{
+		{"empty",
+			[]string{},
+			[]string{},
+			map[string]string{}},
+
+		{"example from README",
+			[]string{
+				"Alina",
+				"Deniss B",
+				"Antons",
+				"Alina",
+				"Antons",
+			},
+			[]string{
+				"+37126017505",
+				"+37127785804",
+				"+37123622588",
+				"+37126505719",
+				"+37128852154",
+			},
+			map[string]string{
+				"Alina":    "+37126505719",
+				"Antons":   "+37128852154",
+				"Deniss B": "+37127785804",
+			}},
+
+		{"example from README without repeat",
+			[]string{
+				"Alina",
+				"Antons",
+				"Deniss B",
+			},
+			[]string{
+				"+37126505719",
+				"+37128852154",
+				"+37127785804",
+			},
+			map[string]string{
+				"Alina":    "+37126505719",
+				"Antons":   "+37128852154",
+				"Deniss B": "+37127785804",
+			}},
+		{"one name - one number",
+			[]string{
+				"Alesja",
+			},
+			[]string{
+				"+37122331231",
+			},
+			map[string]string{
+				"Alesja": "+37122331231",
+			}},
 	}
-	// tests are failed
+	for _, tt := range tests {
+		t.Run(tt.test_name, func(t *testing.T) {
+			if got := createPhoneBook(tt.names, tt.numbers); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("createPhoneBook() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
