@@ -24,6 +24,18 @@ func TestCreatePhoneBook(t *testing.T) {
 			want:    map[string]string{"a": "0"},
 		},
 		{
+			name:    "no name, only phone number",
+			names:   []string{""},
+			numbers: []string{"+37167812439"},
+			want:    map[string]string{"": "+37167812439"},
+		},
+		{
+			name:    "no phone numbers, only names",
+			names:   []string{"Iļja", "Daniils"},
+			numbers: []string{"", ""},
+			want:    map[string]string{"Daniils": "", "Iļja": ""},
+		},
+		{
 			name:    "one contact",
 			names:   []string{"Sebastjans"},
 			numbers: []string{"+37127604728"},
@@ -45,7 +57,7 @@ func TestCreatePhoneBook(t *testing.T) {
 			name:    "three unique contacts",
 			names:   []string{"Aleksandrs", "Валерия", "Alīna"},
 			numbers: []string{"+37177345910", "+3265807134", "+26734167784"},
-			want:    map[string]string{"Aleksandrs": "+37177345910", "Валерия": "+3265807134", "Alīna": "+26734167784"},
+			want:    map[string]string{"Aleksandrs": "+37177345910", "Alīna": "+26734167784", "Валерия": "+3265807134"},
 		},
 		{
 			name:    "three repeating contacts",
@@ -57,7 +69,13 @@ func TestCreatePhoneBook(t *testing.T) {
 			name:    "unique names with the same phone number",
 			names:   []string{"Aleksejs", "Anastasija", "Vladislavs", "Gļebs"},
 			numbers: []string{"+37128167023", "+37128167023", "+37128167023", "+37128167023"},
-			want:    map[string]string{"Aleksejs": "+37128167023", "Anastasija": "+37128167023", "Vladislavs": "+37128167023", "Gļebs": "+37128167023"},
+			want:    map[string]string{"Aleksejs": "+37128167023", "Anastasija": "+37128167023", "Gļebs": "+37128167023", "Vladislavs": "+37128167023"},
+		},
+		{
+			name:    "repeating names with the same phone number",
+			names:   []string{"Sergejs", "Sergejs", "Sergejs", "Sergejs"},
+			numbers: []string{"+37124971390", "+37124971390", "+37124971390", "+37124971390"},
+			want:    map[string]string{"Sergejs": "+37124971390"},
 		},
 		{
 			name:    "example from the task",
