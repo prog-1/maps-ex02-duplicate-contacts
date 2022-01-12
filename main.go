@@ -8,7 +8,7 @@ import (
 
 func createPhoneBook(names []string, numbers []string) map[string]string {
 	m := make(map[string]string)
-	for i, _ := range names {
+	for i := range names {
 		m[names[i]] = numbers[i]
 	}
 	return m
