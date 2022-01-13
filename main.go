@@ -29,4 +29,6 @@ func main() {
 		names = append(names, text1)
 		numbers = append(numbers, text2)
 	}
+	fmt.Println("Your phonebook:")
+	fmt.Print(createPhoneBook(names, numbers))
 }
