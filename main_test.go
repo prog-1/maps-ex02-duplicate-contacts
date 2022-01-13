@@ -16,6 +16,9 @@ func TestCreatePhoneBook(t *testing.T) {
 		{[]string{"A1", "A1"}, []string{"2266", "+3389"}, map[string]string{"A1": "+3389"}},
 		{[]string{",!"}, []string{":0="}, map[string]string{",!": ":0="}},
 		{[]string{"A1", "A2", "A9", "A1", "A9"}, []string{"11", "22", "99", "88", "99"}, map[string]string{"A1": "88", "A2": "22", "A9": "99"}},
+		{[]string{""}, []string{"4456"}, map[string]string{"": "4456"}},
+		{[]string{"A61"}, []string{""}, map[string]string{"A61": ""}},
+		{[]string{"A3", "A3", "A3", "A3"}, []string{"12", "23", "34", "45"}, map[string]string{"A3": "45"}},
 	} {
 		got := createPhoneBook(tc.names, tc.numbers)
 		if !reflect.DeepEqual(got, tc.want) {
